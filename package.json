@@ -1,11 +1,11 @@
 {
-  "name": "backend",
+  "name": "anikutusu-expressjs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "bNi",
   "license": "ISC",

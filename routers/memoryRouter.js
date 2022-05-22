@@ -39,16 +39,17 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const { title, content } = req.body
+        const { title, content,image } = req.body
         const memory = new Memory({
             title,
-            content
+            content,
+            image
         })
         const createdMemory = await Memory.create(memory)
         res.status(201).json(createdMemory)
     } catch (error) {
         res.json({
-            message: error.message
+            message: error
         })
     }
 })

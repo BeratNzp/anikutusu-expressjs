@@ -10,18 +10,8 @@ dotenv.config()
 const app = express()
 app.use(express.json())
 
-const whitelist = ["http://localhost:3000"]
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error("Not allowed by CORS"))
-    }
-  },
-  credentials: true,
-}
-app.use(cors(corsOptions))
+
+app.use(cors)
 
 app.use("/memories", memoryRouter)
 
@@ -29,5 +19,5 @@ app.listen(process.env.SERVER_PORT, () => {
     mongoose.connect(process.env.DATABASE_URI, {
         useUnifiedTopology: true
     }).then(() => console.log("Database connected succesfully."))
-    .catch((err) => console.log("Database connection failed."))
+    .catch((err) => console.log(err))
 })

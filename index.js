@@ -8,12 +8,15 @@ import memoryRouter from "./routers/memoryRouter.js"
 dotenv.config()
 
 const app = express()
-app.use(express.json())
 
+app.use(express.json({limit: '2048kb'}));
 
-app.use(cors)
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
-app.use("/memories", memoryRouter)
+app.use("/memories", cors(corsOptions), memoryRouter)
 
 app.listen(process.env.SERVER_PORT, () => {
     mongoose.connect(process.env.DATABASE_URI, {
